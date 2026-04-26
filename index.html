@@ -9,7 +9,7 @@
 :root{--v:#1C4E39;--a:#E9B646;--l:#CEBBDF;--f:#F0EFE8;--w:#fff;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15px;}
-.hdr{background:var(--v);padding:20px 16px 16px;text-align:center;}
+.hdr{background:var(--v);padding:20px 16px 16px;text-align:center; position: sticky; top: 1px;}
 .hdr-logo{font-size:36px;font-weight:900;color:var(--w);letter-spacing:2px;}
 .hdr-sub{font-size:11px;color:var(--a);font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-top:2px;}
 .hdr-tag{background:var(--a);color:var(--v);font-size:16px;font-weight:900;text-transform:uppercase;padding:7px 18px;display:inline-block;margin-top:12px;border-radius:6px;}
@@ -67,6 +67,87 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
   padding:10px 16px;font-size:13px;font-weight:900;cursor:pointer;font-family:inherit;
   text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;flex-shrink:0;}
 .confirm-btn:hover{opacity:.85;}
+/* menu desplegable */
+/* .menuDesplegable{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+} */
+.menu-toggle {
+  width: 32px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #ddd;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+nav {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s ease;
+  width: 100%;
+}
+
+nav.active {
+  max-height: 390px;
+}
+
+nav ul {
+  list-style: none;
+  padding-top: 16px;
+}
+
+nav ul li {
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+nav ul li a {
+  display: block;
+  padding: 16px 0;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px);
+}
+.destacado{font-weight: bold; font-size: 17px;}
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  padding-left: 16px;
+  transition: max-height 0.3s ease;
+}
+
+.has-submenu.active .submenu {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.submenu li a {
+  padding: 12px 0;
+  font-size: 14px;
+}
 .footer{background:var(--a);text-align:center;padding:24px 20px 110px;}
 .footer p{font-size:13px;color:var(--v);font-weight:700;margin-bottom:5px;}
 .flogo{font-size:26px;font-weight:900;color:var(--v);letter-spacing:2px;margin-top:12px;}
@@ -81,6 +162,47 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
   <div class="hdr-logo">Uonni</div>
   <div class="hdr-sub">Crianza Feliz</div>
   <div class="hdr-tag">Formulario de Pedido Mayorista</div>
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav id="menu">
+    <ul class="menuDesplegable">
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle destacado">Originales de Uonni</a>
+        <ul class="submenu">
+          <li><a href="#">Baberos</a></li>
+          <li><a href="#">Pintorcitos</a></li>
+          <li><a href="#">Saco de dormir</a></li>
+          <li><a href="#">Saco de paseo</a></li>
+          <li><a href="#">Reductores cochecito</a></li>
+          <li><a href="#">Colchon para cochecito</a></li>
+          <li><a href="#">Luncheras Uonni</a></li>
+          <li><a href="#">Mordillos</a></li>
+          <li><a href="#">Gancho Mamy Clip</a></li>
+        </ul>
+      </li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle destacado">Productos importados</a>
+        <ul class="submenu">
+          <li><a href="#">Molde helado</a></li>
+          <li><a href="#">Hielo reutilizable</a></li>
+          <li><a href="#">Platos y cubiertos de silicona</a></li>
+          <li><a href="#">Bolsa Ziploc</a></li>
+          <li><a href="#">Platos y cubiertos</a></li>
+          <li><a href="#">Tapers y viandas</a></li>
+          <li><a href="#">Botellas</a></li>
+          <li><a href="#">Luncheras importadas</a></li>
+          <li><a href="#">Cepillos de dientes</a></li>
+          <li><a href="#">Toallas de manos</a></li>
+          <li><a href="#">Neceseres</a></li>
+          <li><a href="#">Accesorios de pelo</a></li>
+        </ul>
+      </li>
+
+  </nav>
 </div>
 <div class="paddingGeneral">
 <div class="cbox">
@@ -858,7 +980,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
       <div class="psec">
         <img src="./assets/importados/3.jpg" alt="Molde para helado con forma de diamante y de queso">
         <div class="sec-body">
-        <div class="sec-title">Moldes para helado (1)</div>
+        <div class="sec-title">Moldes para helado</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -925,7 +1047,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="./assets/importados/4.jpg" alt="Molde Rabbit Ice y heladitos">
       <div class="sec-body">
-        <div class="sec-title">Moldes para helado (2)</div>
+        <div class="sec-title">Moldes para helado</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -992,7 +1114,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="./assets/importados/5.jpg" alt="Molde helado fruta y Hello Kitty">
       <div class="sec-body">
-        <div class="sec-title">Moldes para helado (3)</div>
+        <div class="sec-title">Moldes para helado</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -1059,7 +1181,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/6.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Moldes para helado (4)</div>
+        <div class="sec-title">Moldes para helado</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -1767,7 +1889,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/15.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Tapers y viandas (1)</div>
+        <div class="sec-title">Tapers y viandas</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -1834,7 +1956,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/16.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Tapers y viandas (2)</div>
+        <div class="sec-title">Tapers y viandas</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -1901,7 +2023,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/17.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Tapers y viandas (3)</div>
+        <div class="sec-title">Tapers y viandas</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -1968,7 +2090,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/18.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Tapers y viandas (4)</div>
+        <div class="sec-title">Tapers y viandas</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -2035,7 +2157,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/19.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Tapers y viandas (5)</div>
+        <div class="sec-title">Tapers y viandas</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -2102,7 +2224,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/20.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Tapers y viandas (6)</div>
+        <div class="sec-title">Tapers y viandas</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -2139,7 +2261,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/21.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Botellas (1)</div>
+        <div class="sec-title">Botellas</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -2206,7 +2328,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/22.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Botellas (2)</div>
+        <div class="sec-title">Botellas</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -2273,7 +2395,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     <div class="psec">
       <img src="assets/importados/23.jpg" alt="">
       <div class="sec-body">
-        <div class="sec-title">Botellas (3)</div>
+        <div class="sec-title">Botellas</div>
         
         <div class="item-row">
           <div class="item-info">
@@ -3173,6 +3295,7 @@ body{font-family:'Nunito',sans-serif;background:var(--f);color:#222;font-size:15
     </div>
   </div>
 </div>
+
 <script>
 var cart = {};
 
@@ -3408,6 +3531,19 @@ function copiarResumen() {
 // Close modal clicking outside
 document.getElementById("modal-overlay").addEventListener("click", function(e) {
   if (e.target === this) cerrarModal();
+});
+const menuToggle = document.getElementById("menuToggle");
+const menu = document.getElementById("menu");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  menu.classList.toggle("active");
+});
+document.querySelectorAll(".submenu-toggle").forEach(item => {
+  item.addEventListener("click", function(e) {
+    e.preventDefault();
+    this.parentElement.classList.toggle("active");
+  });
 });
 </script>
 </body>
